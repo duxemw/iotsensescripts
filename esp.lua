@@ -34,7 +34,7 @@ for i,v in pairs(game.Players:GetChildren()) do
     HealthBar.Transparency = 1
     HealthBar.Visible = false
 
-    function boxesp()
+    function boxesp(bool)
         game:GetService("RunService").RenderStepped:Connect(function()
             if v.Character ~= nil and v.Character:FindFirstChild("Humanoid") ~= nil and v.Character:FindFirstChild("HumanoidRootPart") ~= nil and v ~= lplr and v.Character.Humanoid.Health > 0 then
                 local Vector, onScreen = camera:worldToViewportPoint(v.Character.HumanoidRootPart.Position)
