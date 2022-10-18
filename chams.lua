@@ -124,3 +124,4 @@ dwRunService.Heartbeat:Connect(function()
     end
 
 end)
+return destroy_chams
