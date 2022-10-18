@@ -124,4 +124,5 @@ dwRunService.Heartbeat:Connect(function()
     end
 
 end)
+local function stop() end if bool == true then start() else stop() end end
 return destroy_chams
