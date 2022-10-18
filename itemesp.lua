@@ -2,7 +2,12 @@ local camera = workspace.CurrentCamera
 local runservice = game:GetService("RunService")
 
 function esp(drop)
-
+print("aleonmaessse")
+print("aleonmaessse")
+print("aleonmaessse")
+print("aleonmaessse")
+print("aleonmaessse")
+print("aleonmaessse")
     local dropesp = Drawing.new("Text")
     dropesp.Visible = false
     dropesp.Center = true
