@@ -11,9 +11,9 @@ local settings_tbl = {
     Chams_Glow_Color = Color3.fromRGB(255,0,0)
 }
 
-function destroy_chams(char)
+function destroy_chams(bool)
 
-    for k,v in next, char:GetChildren() do 
+    for k,v in next, bool:GetChildren() do 
 
         if v:IsA("BasePart") and v.Transparency ~= 1 then
 
@@ -79,7 +79,7 @@ dwRunService.Heartbeat:Connect(function()
 
                                 else
 
-                                    destroy_chams(char)
+                                    destroy_chams(bool)
 
                                 end
                             
