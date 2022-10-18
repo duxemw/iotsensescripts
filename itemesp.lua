@@ -1,7 +1,7 @@
 local camera = workspace.CurrentCamera
 local runservice = game:GetService("RunService")
 
-function esp(bool)
+function esp(drop)
     local dropesp = Drawing.new("Text")
     dropesp.Visible = false
     dropesp.Center = true
@@ -42,7 +42,7 @@ end
 workspace.ChildAdded:Connect(function(drop)
     if drop.Name == "Drop" then
         if drop:FindFirstChild("Briefcase") then
-            esp(bool)
+            esp(drop)
         end
     end
 end)
