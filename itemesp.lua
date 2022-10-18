@@ -1,13 +1,6 @@
 local camera = workspace.CurrentCamera
 local runservice = game:GetService("RunService")
 
-print("aleonmaessse")
-print("aleonmaessse")
-print("aleonmaessse")
-print("aleonmaessse")
-print("aleonmaessse")
-print("aleonmaessse")
-
 function esp(drop)
     local dropesp = Drawing.new("Text")
     dropesp.Visible = false
@@ -53,4 +46,3 @@ workspace.ChildAdded:Connect(function(drop)
         end
     end
 end)
-retrun esp
