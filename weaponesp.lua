@@ -63,6 +63,7 @@ local function esp(p,cr)
             text.Visible = true
         else
             text.Visible = false
+            text:Remove()
         end
     end)
 
