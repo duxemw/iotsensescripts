@@ -3,7 +3,7 @@ local ps = game:GetService("Players")
 local lp = ps.LocalPlayer
 local rs = game:GetService("RunService")
 
-local WeaponEsp = true
+local esp = true
 
 local function ftool(cr)
     for a,b in next, cr:GetChildren() do 
