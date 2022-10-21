@@ -1,36 +1,84 @@
--- // thanks to 0x83 for the cool esp tutorials on youtube, wouldnt of been able to really write this without them \\
--- // I use this for rogue hub lol \\
+local c = workspace.CurrentCamera
+local ps = game:GetService("Players")
+local lp = ps.LocalPlayer
+local rs = game:GetService("RunService")
 
-espLib = {}
+local function ftool(cr)
+    for a,b in next, cr:GetChildren() do 
+        if b.ClassName == 'Tool' then
+            return tostring(b.Name)
+        end
+    end
+    return 'empty'
+end
 
-function espLib:esp(object, text, color)
-    local espText = Drawing.new("Text")
-    espText.Visible = false
-    espText.Center = true
-    espText.Font = 3
-    espText.Color = color
-    espText.Size = 15
-    
-    object.AncestryChanged:Connect(function(child, parent)
-        if not child or not parent then
-            espText.Visible = false
-            espText:Remove()
+local function esp(p,cr)
+    local h = cr:WaitForChild("Humanoid")
+    local hrp = cr:WaitForChild("HumanoidRootPart")
+
+    local text = Drawing.new('Text')
+    text.Visible = false
+    text.Center = true
+    text.Outline = true
+    text.Color = Color3.new(1,1,1)
+    text.Font = 2
+    text.Size = 13
+
+    local c1 
+    local c2
+    local c3 
+
+    local function dc()
+        text.Visible = false
+        text:Remove()
+        if c3 then
+            c1:Disconnect()
+            c2:Disconnect()
+            c3:Disconnect()
+            c1 = nil 
+            c2 = nil
+            c3 = nil
+        end
+    end
+
+    c2 = cr.AncestryChanged:Connect(function(_,parent)
+        if not parent then
+            dc()
         end
     end)
-    
-    game:GetService("RunService").RenderStepped:Connect(function()
-        local objectPos, onScreen = game:GetService("Workspace").Camera:WorldToViewportPoint(object.Position)
 
-        pcall(function()
-            if onScreen and object ~= nil and espText then
-                espText.Position = Vector2.new(objectPos.X, objectPos.Y)
-                espText.Text = text
-                espText.Visible = true
-            else
-                espText.Visible = false
-            end
-        end)
+    c3 = h.HealthChanged:Connect(function(v)
+        if (v<=0) or (h:GetState() == Enum.HumanoidStateType.Dead) then
+            dc()
+        end
+    end)
+
+    c1 = rs.Heartbeat:Connect(function()
+        local hrp_pos,hrp_os = c:WorldToViewportPoint(hrp.Position)
+        if hrp_os then
+            text.Position = Vector2.new(hrp_pos.X, hrp_pos.Y)
+            text.Text = '[ '..tostring(ftool(cr))..' ]'
+            text.Visible = true
+        else
+            text.Visible = false
+        end
+    end)
+
+end
+
+local function p_added(p)
+    if p.Character then
+        esp(p,p.Character)
+    end
+    p.CharacterAdded:Connect(function(cr)
+        esp(p,cr)
     end)
 end
 
-return espLib
+for a,b in next, ps:GetPlayers() do 
+    if b ~= lp then
+        p_added(b)
+    end
+end
+
+ps.PlayerAdded:Connect(p_added)
