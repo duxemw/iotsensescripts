@@ -3,6 +3,8 @@ local ps = game:GetService("Players")
 local lp = ps.LocalPlayer
 local rs = game:GetService("RunService")
 
+local WeaponEsp = true
+
 local function ftool(cr)
     for a,b in next, cr:GetChildren() do 
         if b.ClassName == 'Tool' then
@@ -17,7 +19,7 @@ local function esp(p,cr)
     local hrp = cr:WaitForChild("HumanoidRootPart")
 
     local text = Drawing.new('Text')
-    text.Visible = false
+    text.Visible = WeaponEsp
     text.Center = true
     text.Outline = true
     text.Color = Color3.new(1,1,1)
