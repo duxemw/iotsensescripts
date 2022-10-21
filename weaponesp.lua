@@ -1,4 +1,4 @@
-weaponesp = {}
+espLib = {}
 
 local c = workspace.CurrentCamera
 local ps = game:GetService("Players")
@@ -14,7 +14,7 @@ local function ftool(cr)
     return 'empty'
 end
 
-local function esp(p,cr)
+local function espLib:esp(p,cr)
     local h = cr:WaitForChild("Humanoid")
     local hrp = cr:WaitForChild("HumanoidRootPart")
 
@@ -86,4 +86,4 @@ end
 
 ps.PlayerAdded:Connect(p_added)
 
-return weaponesp
+return espLib
