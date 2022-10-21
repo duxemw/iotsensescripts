@@ -84,3 +84,5 @@ for a,b in next, ps:GetPlayers() do
 end
 
 ps.PlayerAdded:Connect(p_added)
+
+return WeaponEsp
