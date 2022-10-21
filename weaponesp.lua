@@ -14,7 +14,7 @@ local function ftool(cr)
     return 'empty'
 end
 
-local function espLib:esp(p,cr)
+local function esp(p,cr)
     local h = cr:WaitForChild("Humanoid")
     local hrp = cr:WaitForChild("HumanoidRootPart")
 
