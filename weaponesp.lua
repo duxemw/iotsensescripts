@@ -2,8 +2,8 @@ local c = workspace.CurrentCamera
 local ps = game:GetService("Players")
 local lp = ps.LocalPlayer
 local rs = game:GetService("RunService")
-
-local esp = true
+    
+local function start()
 
 local function ftool(cr)
     for a,b in next, cr:GetChildren() do 
@@ -11,7 +11,7 @@ local function ftool(cr)
             return tostring(b.Name)
         end
     end
-    return 'empty'
+  
 end
 
 local function esp(p,cr)
@@ -84,5 +84,23 @@ for a,b in next, ps:GetPlayers() do
 end
 
 ps.PlayerAdded:Connect(p_added)
+    
+local function p_added(p)
+    if p.Character then
+        esp(p,p.Character)
+    end
+    p.CharacterAdded:Connect(function(cr)
+        esp(p,cr)
+    end)
+end
+    
+for a,b in next, ps:GetPlayers() do 
+    if b ~= lp then
+        p_added(b)
+    end
+end
 
-return WeaponEsp
+local function stop() end if bool == true then start() else stop() end end
+return esp
+    
+ps.PlayerAdded:Connect(p_added)
